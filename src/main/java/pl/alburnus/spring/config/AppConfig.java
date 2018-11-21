@@ -1,10 +1,14 @@
 package pl.alburnus.spring.config;
 
 import org.apache.commons.dbcp2.BasicDataSource;
+import org.mybatis.spring.SqlSessionFactoryBean;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaDialect;
@@ -28,6 +32,7 @@ import java.util.Map;
 @EnableWebMvc
 @ComponentScan(basePackages = "pl.alburnus.spring")
 @EnableJpaRepositories(basePackages = "pl.alburnus.spring.model")
+@MapperScan("pl/alburnus/spring/dao/mappers")
 public class AppConfig extends WebMvcConfigurerAdapter {
 
     @Override
@@ -108,5 +113,20 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         FreeMarkerConfigurer freeMarkerConfigurer = new FreeMarkerConfigurer();
         freeMarkerConfigurer.setTemplateLoaderPath("/WEB-INF/freemarker");
         return freeMarkerConfigurer;
+    }
+
+    @Bean
+    public DataSourceTransactionManager transactionManager() {
+        return new DataSourceTransactionManager(dataSource());
+    }
+
+    @Bean
+    public SqlSessionFactoryBean sqlSessionFactory() throws Exception {
+        SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
+        sessionFactory.setDataSource(dataSource());
+        sessionFactory.setTypeAliasesPackage("pl.alburnus.spring.model");
+        // Needed If you would like to use extra configuration
+        sessionFactory.setConfigLocation(new ClassPathResource("mybatis-config.xml"));
+        return sessionFactory;
     }
 }

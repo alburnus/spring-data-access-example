@@ -1,0 +1,37 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pl.alburnus.spring.dao.mappers.TeamRepo">
+    <cache/>
+
+    <resultMap type="pl.alburnus.spring.model.Team" id="Team">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <collection property="teammateList" resultMap="Teammate"/>
+    </resultMap>
+
+    <resultMap type="pl.alburnus.spring.model.Teammate" id="Teammate">
+        <id property="id" column="teammate_id"/>
+        <result property="name" column="teammate_name"/>
+    </resultMap>
+
+    <select id="getAllTeams" resultMap="Team">
+        SELECT
+            t.id   AS id,
+            t.name AS name,
+            u.id   AS teammate_id,
+            u.name AS teammate_name
+        FROM team t INNER JOIN teammate u ON u.team_id = t.id
+    </select>
+
+    <!--<insert id="insertUser" parameterTyTeammateUser">-->
+    <!--INSERT INTO users (firstName, lastName, email)-->
+    <!--VALUES (#{firstName}, #{lastName}, #{email})-->
+    <!--</insert>-->
+
+    <!--<update id="updateUser" parameterTyTeammateUser">-->
+    <!--UPDATE users SET-->
+    <!--firstName = #{firstName},-->
+    <!--lastName = #{lastName},-->
+    <!--email = #{email}-->
+    <!--WHERE ID = #{id}-->
+    <!--</update>-->
+</mapper>

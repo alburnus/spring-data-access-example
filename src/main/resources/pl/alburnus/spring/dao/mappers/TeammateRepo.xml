@@ -1,0 +1,29 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pl.alburnus.spring.dao.mappers.TeammateRepo">
+    <cache/>
+
+    <resultMap type="pl.alburnus.spring.model.Teammate" id="Teammate">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+    </resultMap>
+
+    <select id="getAllUsers" resultMap="Teammate">
+        SELECT
+            id,
+            name
+        FROM teammate
+    </select>
+
+    <select id="findById" resultType="Teammate">
+        SELECT
+            id,
+            name
+        FROM teammate
+        WHERE id = #{id}
+    </select>
+
+    <insert id="create" parameterType="Teammate">
+        INSERT INTO teammate (name)
+        VALUES (#{name})
+    </insert>
+</mapper>

@@ -6,23 +6,20 @@ import lombok.Getter;
 import lombok.ToString;
 
 import javax.persistence.Entity;
-import javax.persistence.Table;
-import java.time.LocalDate;
 
 @Entity
-@Table(name = "users")
 @Builder
 @ToString
 @EqualsAndHashCode
-public class User extends BaseEntity {
+public class Teammate extends BaseEntity {
 
     @Getter
     private String name;
 
-    protected User() {
+    protected Teammate() {
     }
 
-    protected User(String name) {
+    protected Teammate(String name) {
         this.name = name;
     }
 }

@@ -21,13 +21,13 @@ public class Team extends BaseEntity {
 
     @OneToMany
     @JoinColumn(name = "team_id")
-    private List<User> userList;
+    private List<Teammate> teammateList;
 
     protected Team() {
     }
 
-    protected Team(String name, List<User> userList) {
+    protected Team(String name, List<Teammate> teammateList) {
         this.name = name;
-        this.userList = userList;
+        this.teammateList = teammateList;
     }
 }
