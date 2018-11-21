@@ -54,9 +54,16 @@ public class MainController {
 
     @RequestMapping(value = "/teammate", method = RequestMethod.POST)
     public String createTeammate(TeammateVo teammate, Model model) {
-        System.out.println("createTeammate:" + teammate.toString());
         teammateRepo.create(Teammate.builder().name(teammate.getName()).build());
         model.addAttribute("teammates", teammateRepo.getAllUsers());
+
+        List<Teammate> allTeammates = teammateRepo.getAllUsers();
+        Teammate byId = teammateRepo.findById(1L);
+        Teammate byName = teammateRepo.finByName("Krzysztof");
+        System.out.println("loadTeammateView:" + allTeammates.toString());
+        System.out.println("loadTeammateView byId: " + byId.toString());
+        System.out.println("loadTeammateView byName: " + byName.toString());
+
         return "teammate-view";
     }
 }
