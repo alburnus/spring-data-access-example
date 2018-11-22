@@ -27,10 +27,10 @@ mvn clean install tomcat7:run
     </dependency>
 ```
 
-##LINKS
+## LINKS
 * http://www.mybatis.org/mybatis-3/configuration.html 
 * http://www.mybatis.org/spring/getting-started.html 
 
-##TODO
+## TODO
 - add h2 database
 - add example: Spring Data, JPQL, Native Query, Named Query, Criteria Builder
