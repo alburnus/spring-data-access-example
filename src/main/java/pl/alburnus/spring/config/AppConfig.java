@@ -49,10 +49,15 @@ public class AppConfig extends WebMvcConfigurerAdapter {
     public BasicDataSource dataSource() {
         // org.apache.commons.dbcp.BasicDataSource
         BasicDataSource basicDataSource = new BasicDataSource();
-        basicDataSource.setDriverClassName("org.postgresql.Driver");
-        basicDataSource.setUrl("jdbc:postgresql://localhost:5432/team2");
-        basicDataSource.setUsername("team2");
-        basicDataSource.setPassword("team2");
+        basicDataSource.setDriverClassName("org.h2.Driver");
+        basicDataSource.setUrl("jdbc:h2:file:~/test");
+        basicDataSource.setUsername("sa");
+        basicDataSource.setPassword("");
+
+//        basicDataSource.setDriverClassName("org.postgresql.Driver");
+//        basicDataSource.setUrl("jdbc:postgresql://localhost:5432/team2");
+//        basicDataSource.setUsername("team2");
+//        basicDataSource.setPassword("team2");
         return basicDataSource;
     }
 

@@ -1,7 +1,7 @@
 # spring-data-access-example
 
 To run example need:
-* postgres DB
+* you can use postgres DB, but at the moment connection is to H2
 
 After you installed DB, to run an app use command: 
 ```sql
