@@ -1,4 +1,4 @@
-package pl.alburnus.spring.dao.mappers;
+package pl.alburnus.spring.repository.mybatis;
 
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;

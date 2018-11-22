@@ -2,7 +2,7 @@
 
 <@standardPage title="Home">
 
-<h1>Add user</h1>
+<h1>Add user by mybatis method</h1>
 <form action="/view/teammate" method="post">
     <div class="form-group">
         <label for="name">Name</label>
@@ -11,5 +11,4 @@
     </div>
     <button type="submit" class="btn btn-primary" value="Submit">Book</button>
 </form>
-
 </@standardPage>

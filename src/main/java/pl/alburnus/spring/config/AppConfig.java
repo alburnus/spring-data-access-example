@@ -32,7 +32,7 @@ import java.util.Map;
 @EnableWebMvc
 @ComponentScan(basePackages = "pl.alburnus.spring")
 @EnableJpaRepositories(basePackages = "pl.alburnus.spring.model")
-@MapperScan("pl/alburnus/spring/dao/mappers")
+@MapperScan("pl.alburnus.spring.repository.mybatis")
 public class AppConfig extends WebMvcConfigurerAdapter {
 
     @Override
@@ -44,13 +44,6 @@ public class AppConfig extends WebMvcConfigurerAdapter {
     public void addResourceHandlers(final ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
     }
-
-//    @Override
-//    protected javax.servlet.Filter[] getServletFilters() {
-//        DelegatingFilterProxy delegateFilterProxy = new DelegatingFilterProxy();
-//        delegateFilterProxy.setTargetBeanName("applicationFilter");
-//        return new Filter[]{delegateFilterProxy};
-//    }
 
     @Bean
     public BasicDataSource dataSource() {

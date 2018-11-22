@@ -1,4 +1,4 @@
-package pl.alburnus.spring.dao.mappers;
+package pl.alburnus.spring.repository.mybatis;
 
 import pl.alburnus.spring.model.Team;
 

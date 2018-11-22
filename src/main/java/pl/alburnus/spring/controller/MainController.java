@@ -4,8 +4,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import pl.alburnus.spring.dao.mappers.TeamRepo;
-import pl.alburnus.spring.dao.mappers.TeammateRepo;
+import org.springframework.web.bind.annotation.RequestParam;
+import pl.alburnus.spring.repository.mybatis.TeamRepo;
+import pl.alburnus.spring.repository.mybatis.TeammateRepo;
 import pl.alburnus.spring.dto.TeammateVo;
 import pl.alburnus.spring.model.Team;
 import pl.alburnus.spring.model.Teammate;
@@ -37,11 +38,10 @@ public class MainController {
     @RequestMapping("/teammate")
     public String loadTeammateView(Model model) {
         List<Teammate> allTeammates = teammateRepo.getAllUsers();
-        Teammate byId = teammateRepo.findById(1L);
-        Teammate byName = teammateRepo.finByName("Krzysztof");
-        System.out.println("loadTeammateView:" + allTeammates.toString());
-        System.out.println("loadTeammateView byId: " + byId.toString());
-        System.out.println("loadTeammateView byName: " + byName.toString());
+
+        System.out.println("loadTeammateView getAll:" + allTeammates.toString());
+        System.out.println("loadTeammateView byId: " + teammateRepo.findById(1L).toString());
+        System.out.println("loadTeammateView byName: " + teammateRepo.finByName("Krzysztof").toString());
 
         model.addAttribute("teammates", allTeammates);
         return "teammate-view";
@@ -57,12 +57,9 @@ public class MainController {
         teammateRepo.create(Teammate.builder().name(teammate.getName()).build());
         model.addAttribute("teammates", teammateRepo.getAllUsers());
 
-        List<Teammate> allTeammates = teammateRepo.getAllUsers();
-        Teammate byId = teammateRepo.findById(1L);
-        Teammate byName = teammateRepo.finByName("Krzysztof");
-        System.out.println("loadTeammateView:" + allTeammates.toString());
-        System.out.println("loadTeammateView byId: " + byId.toString());
-        System.out.println("loadTeammateView byName: " + byName.toString());
+        System.out.println("loadTeammateView getAll:" + teammateRepo.getAllUsers().toString());
+        System.out.println("loadTeammateView byId: " + teammateRepo.findById(1L).toString());
+        System.out.println("loadTeammateView byName: " + teammateRepo.finByName("Krzysztof").toString());
 
         return "teammate-view";
     }
